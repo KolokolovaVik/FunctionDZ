@@ -1,0 +1,6 @@
+C:\Users\VK264\source\repos\FunctionDZ\DZ1\bin\Debug\DZ1.exe.config
+C:\Users\VK264\source\repos\FunctionDZ\DZ1\bin\Debug\DZ1.exe
+C:\Users\VK264\source\repos\FunctionDZ\DZ1\bin\Debug\DZ1.pdb
+C:\Users\VK264\source\repos\FunctionDZ\DZ1\obj\Debug\DZ1.csprojAssemblyReference.cache
+C:\Users\VK264\source\repos\FunctionDZ\DZ1\obj\Debug\DZ1.exe
+C:\Users\VK264\source\repos\FunctionDZ\DZ1\obj\Debug\DZ1.pdb
