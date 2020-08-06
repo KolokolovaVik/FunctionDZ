@@ -10,31 +10,32 @@ namespace DZ2
     {
         static void Main(string[] args)
         {
-            int health = 50, maxHealth = 100;
-            int mana = 40, maxMana = 100;
+            int health = 50;
+            int mana = 40;
 
             while (true)
             {
-
-                DrawBar(health, maxHealth, ConsoleColor.Red, 0);
-                DrawBar(mana, maxMana, ConsoleColor.Green, 1);
+                DrawBar(health, ConsoleColor.Red, 0);
+                DrawBar(mana, ConsoleColor.Green, 1);
 
                 Console.SetCursorPosition(0, 5);
                 Console.Write("На какое количество процентов изменить жизни: ");
                 health += Convert.ToInt32(Console.ReadLine());
                 Console.Write("На сколько процентов изменить ману: ");
                 mana += Convert.ToInt32(Console.ReadLine());
-               
+
+                
                 Console.ReadKey();
                 Console.Clear();
             }
         }
 
-        static void DrawBar(int value, int maxValue, ConsoleColor color, int position, char symbol = '#')
+        static void DrawBar(int value, ConsoleColor color, int position, char symbol = '#')
         {
-            Console.SetCursorPosition(0, position);
             value /= 10;
-            maxValue /= 10;
+            int maxValue = 100 / 10;
+            Console.SetCursorPosition(0, position);
+            
             Console.BackgroundColor  = default;
             string bar = "";
             for(int i = 0; i < value; i++)
