@@ -10,10 +10,12 @@ namespace DZ1
     {
         static void Main(string[] args)
         {
+
+
             string[] fullName = new string[0];
             string[] position = new string[0];
             int serialNumber = 0;
-            
+
             bool isOpen = true;
             while (isOpen)
             {
@@ -25,7 +27,7 @@ namespace DZ1
                     $"4) поиск по фамилии\n " +
                     $"5) выход.");
                 switch (Convert.ToInt32(Console.ReadLine()))
-                { 
+                {
                     case 1:
                         FillDossier(ref fullName, ref position);
                         break;
@@ -36,18 +38,21 @@ namespace DZ1
                         }
                         else
                         {
-                            Console.WriteLine("Досье не заполнено!");  
+                            Console.WriteLine("Досье не заполнено!");
                         }
                         PressKey();
                         break;
                     case 3:
-                            RemoveDossier(ref fullName, ref position);
+                        Console.Write("Введите номер досье которое хотите удалить: ");
+                        int serialNumberDossier = Convert.ToInt32(Console.ReadLine()) - 1;
+                        RemoveDossier(ref fullName, ref serialNumberDossier);
+                        RemoveDossier(ref position, ref serialNumberDossier);
                         break;
                     case 4:
-                            SearchByName(fullName);
+                        SearchByName(fullName);
                         break;
                     case 5:
-                            Exit(ref isOpen);
+                        Exit(ref isOpen);
                         break;
                 }
             }
@@ -55,9 +60,11 @@ namespace DZ1
 
         static void FillDossier(ref string[] fullName, ref string[] position)
         {
-            ReadFullNameAndPosition(ref fullName);
-            ReadFullNameAndPosition(ref position);
-            PressKey();    
+            Console.WriteLine("Введите Вашу Фамилию, имя, отчество: ");
+            FillFullNameOrPosition(ref fullName);
+            Console.WriteLine("Введите Вашу должность: ");
+            FillFullNameOrPosition(ref position);
+            PressKey();
         }
 
         static void DrawDossier(string[] fullName, string[] position, ref int serialNumber)
@@ -73,28 +80,20 @@ namespace DZ1
             }
         }
 
-        static void RemoveDossier(ref string[] fullName, ref string[] position)
+        static void RemoveDossier(ref string[] DossierData, ref int serialNumberDossier)
         {
-            Console.Write("Введите номер досье которое хотите удалить: ");
+            string[] newFullNameOrPosition = new string[DossierData.Length - 1];
 
-            string[] newFullName = new string[fullName.Length - 1];
-            string[] newPosition = new string[position.Length - 1];
-            int serialNumber = Convert.ToInt32(Console.ReadLine()) - 1;
-
-                for (int i = 0; i < serialNumber; i++)
-                {
-                    newFullName[i] = fullName[i];
-                    newPosition[i] = position[i];
-                }
-                for (int i = serialNumber + 1; i < fullName.Length; i++)
-                {
-                    newFullName[i - 1] = fullName[i];
-                    newPosition[i - 1] = position[i];
-                }
-                fullName = newFullName;
-                position = newPosition;
-
-                PressKey();
+            for (int i = 0; i < serialNumberDossier; i++)
+            {
+                newFullNameOrPosition[i] = DossierData[i];
+            }
+            for (int i = serialNumberDossier + 1; i < DossierData.Length; i++)
+            {
+                newFullNameOrPosition[i - 1] = DossierData[i];
+            }
+            DossierData = newFullNameOrPosition;
+            PressKey();
         }
 
         static void SearchByName(string[] fullName)
@@ -102,8 +101,8 @@ namespace DZ1
             bool surnameIsFind = false;
             Console.WriteLine("Введите фамилию, которую хотите найти: ");
             string userInput = Console.ReadLine();
-           
-            for (int i = 0; i< fullName.Length; i++)
+
+            for (int i = 0; i < fullName.Length; i++)
             {
 
                 string fullNameWorker = fullName[i];
@@ -111,9 +110,9 @@ namespace DZ1
                 string surname = splited[0];
                 if (userInput.ToLower() == surname.ToLower())
                 {
-                    Console.WriteLine($"Фамилия: {surname} - есть в досье!");  
+                    Console.WriteLine($"Фамилия: {surname} - есть в досье!");
                     surnameIsFind = true;
-                }   
+                }
             }
             if (!surnameIsFind)
             {
@@ -130,11 +129,10 @@ namespace DZ1
             PressKey();
         }
 
-        static void ReadFullNameAndPosition(ref string[] dossierData)
+        static void FillFullNameOrPosition(ref string[] dossierData)
         {
             string[] fullNameWorkerOrPosition = new string[dossierData.Length + 1];
-            Console.WriteLine("Введите Вашу Фамилию, имя и отчество: ");
-
+            
             for (int i = 0; i < dossierData.Length; i++)
             {
                 fullNameWorkerOrPosition[i] = dossierData[i];
@@ -142,6 +140,7 @@ namespace DZ1
             fullNameWorkerOrPosition[fullNameWorkerOrPosition.Length - 1] = Console.ReadLine();
             dossierData = fullNameWorkerOrPosition;
         }
+
 
         static void PressKey()
         {
