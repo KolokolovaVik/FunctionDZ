@@ -24,7 +24,6 @@ namespace DZ2
                 Console.Write("На сколько процентов изменить ману: ");
                 mana += Convert.ToInt32(Console.ReadLine());
 
-                
                 Console.ReadKey();
                 Console.Clear();
             }
