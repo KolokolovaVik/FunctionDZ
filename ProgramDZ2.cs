@@ -31,12 +31,15 @@ namespace DZ2
 
         static void DrawBar(int value, ConsoleColor color, int position, char symbol = '#')
         {
-            int size = 100 / 10;
+            int valueOfDivision = 10;
+            int size = 100 / valueOfDivision;
+            value /= valueOfDivision;
+
             Console.SetCursorPosition(0, position);
             
             Console.BackgroundColor  = default;
             string bar = "";
-            for(int i = 0; i < value / 10; i++)
+            for(int i = 0; i < value; i++)
             {
                 bar += symbol;
             }
