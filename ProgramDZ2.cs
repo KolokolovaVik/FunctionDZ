@@ -32,7 +32,7 @@ namespace DZ2
         static void DrawBar(int value, ConsoleColor color, int position, char symbol = '#')
         {
             value /= 10;
-            int maxValue = 100 / 10;
+            int size = 100 / 10;
             Console.SetCursorPosition(0, position);
             
             Console.BackgroundColor  = default;
@@ -47,7 +47,7 @@ namespace DZ2
             Console.Write(bar);
             bar = "";
 
-            for(int i = value; i< maxValue; i++)
+            for(int i = value; i< size; i++)
             {
                 bar += '_';
             }
