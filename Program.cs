@@ -29,7 +29,7 @@ namespace DZ1
                 switch (Convert.ToInt32(Console.ReadLine()))
                 {
                     case 1:
-                        FillDossier(ref fullName, ref position);
+                        AddDossier(ref fullName, ref position);
                         break;
                     case 2:
                         if (fullName.Length > 0 || position.Length > 0)
@@ -58,12 +58,12 @@ namespace DZ1
             }
         }
 
-        static void FillDossier(ref string[] fullName, ref string[] position)
+        static void AddDossier(ref string[] fullName, ref string[] position)
         {
             Console.WriteLine("Введите Вашу Фамилию, имя, отчество: ");
-            FillFullNameOrPosition(ref fullName);
+            FillDossier(ref fullName);
             Console.WriteLine("Введите Вашу должность: ");
-            FillFullNameOrPosition(ref position);
+            FillDossier(ref position);
             PressKey();
         }
 
@@ -129,7 +129,7 @@ namespace DZ1
             PressKey();
         }
 
-        static void FillFullNameOrPosition(ref string[] dossierData)
+        static void FillDossier(ref string[] dossierData)
         {
             string[] fullNameWorkerOrPosition = new string[dossierData.Length + 1];
             
